@@ -1,1 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎬 Movie Recommendation System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: #f1f1f1;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: #1e1e1e;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      color: #00f7ff;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+
+    form {
+      background: #222;
+      padding: 25px 30px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+      box-shadow: inset 0 0 12px rgba(0, 255, 255, 0.05);
+    }
+
+    .form-row {
+      margin-bottom: 20px;
+    }
+
+    .form-row label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #ccc;
+    }
+
+    .form-row input[type="range"],
+    .form-row input[list],
+    .form-row select {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      background: #181818;
+      border: 1px solid #333;
+      border-radius: 8px;
+      color: #fff;
+    }
+
+    .form-row input[type="range"] {
+      margin-top: 8px;
+    }
+
+    .form-row span {
+      color: #0ff;
+      font-weight: 700;
+      margin-left: 8px;
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .form-actions button {
+      flex: 1;
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .get-btn {
+      background: #00f7ff;
+      color: #000;
+    }
+
+    .get-btn:hover {
+      background: #00c4cc;
+    }
+
+    .clear-btn {
+      background: #444;
+      color: #fff;
+    }
+
+    .clear-btn:hover {
+      background: #666;
+    }
+
+    .recommendations-title {
+      font-size: 1.5rem;
+      color: #0ff;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .recommendations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+.movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .movie-card-wrapper {
+      position: relative;
+    }
+
+    .movie-card {
+      display: flex;
+      flex-direction: column;
+      background: #1b1b1b;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, filter 0.3s ease, border 0.3s ease;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.05);
+      border: 2px solid transparent;
+      filter: brightness(1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .movie-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.6), 0 12px 30px rgba(0, 255, 255, 0.15);
+      background: linear-gradient(145deg, #1e1e1e, #262626);
+      border: 1px solid #00f7ff;
+      filter: brightness(1.1);
+      z-index: 10;
+    }
+
+    .rating-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background:rgb(11, 209, 216); 
+      color: #000;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      box-shadow: 0 0 10px;
+      transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+      user-select: none;
+    }
+
+    .movie-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #f9f9f9;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .movie-card:hover .movie-title {
+      color: #00f7ff;
+    }
+
+    .movie-info {
+      font-size: 0.95rem;
+      color: #ccc;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .movie-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .movie-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: #9ca3af;
+      margin-bottom: 0.75rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .movie-card:hover .meta-item {
+      color: #3b82f6;
+    }
+
+    .movie-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .movie-genre {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      background-color: #2d2d2d;
+      border-radius: 9999px;
+      color: #ccc;
+    }
+
+    .movie-card:hover .movie-genre {
+      background-color: #2563eb;
+      color: #fff;
+    }
+
+    .movie-scores {
+      display: flex;
+      gap: 1.5rem;
+      margin: 0.5rem 0 1rem 0;
+    }
+
+    .score {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .score.yellow {
+      color: #facc15;
+    }
+
+    .score.red {
+      color: #ef4444;
+    }
+
+    .score-label {
+      font-weight: 500;
+      color: inherit;
+    }
+
+    .movie-card:hover .score.yellow {
+      color: #f59e0b;
+    }
+
+    .movie-card:hover .score.red {
+      color: #dc2626;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 10px #00f7ff;
+        background-color: #0f0;
+      }
+      50% {
+        box-shadow: 0 0 20px #00f7ff;
+        background-color: #00f7ff;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .form-actions {
+        flex-direction: column;
+      }
+
+      .form-actions button {
+        width: 100%;
+      }
+    }
+
+ .sort-buttons {
+  display: flex;
+  flex-direction: row; /* now buttons are in one line */
+  gap: 0.5rem;
+  flex-wrap: wrap; /* optional: allows wrapping on smaller screens */
+}
+
+.sort-button {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f1f1f;
+  color: #f1f1f1;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  flex: 1;
+  min-width: 150px;
+}
+
+.sort-button:hover {
+  background-color: #2a2a2a;
+  box-shadow: 0 0 6px rgba(0, 247, 255, 0.2);
+}
+
+.sort-button.active {
+  color: #000;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 247, 255, 0.8);
+}
+
+.arrow {
+  font-size: 1.2rem;
+  margin-left: 0.5rem;
+}
+
+.movie-info-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #00f7ff;
+  color: #000;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.4);
+  display: none;
+  z-index: 1000;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+#backToTop:hover {
+  background-color: #00c4cc;
+  transform: scale(1.1);
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Movie Recommendation System</h1>
+    <div class="subtitle">Find your next favorite movie</div>
+    <form method="POST" autocomplete="off">
+      <div class="form-row">
+        <label for="keyword">Movie Title, Genre, or Director</label>
+        <input list="keywordOptions" name="keyword" id="keyword" required value="{{ request.form.keyword or '' }}" placeholder="Search movies, genres, or directors" autocomplete="off" />
+        <datalist id="keywordOptions">
+          {% for keyword in keyword_list %}
+            <option value="{{ keyword }}"></option>
+          {% endfor %}
+        </datalist>
+      </div>
+
+      <div class="form-row">
+        <label for="top_n">Number of Recommendations</label>
+        <input type="range" id="top_n" name="top_n" min="1" max="10" value="{{ top_n }}" oninput="document.getElementById('num-recommendations-value').textContent = this.value;" />
+        <span id="num-recommendations-value">{{ top_n }}</span>
+      </div>
+
+      <div class="form-row">
+        <label>Sort By</label>
+        <div class="sort-buttons">
+          <button type="button" class="sort-button" id="audienceScoreBtn">
+            <span>Audience Score</span>
+            <span class="arrow" id="audienceScoreArrow">↑</span>
+          </button>
+          <button type="button" class="sort-button" id="tomatoMeterBtn">
+            <span>Tomato Meter</span>
+            <span class="arrow" id="tomatoMeterArrow">↑</span>
+          </button>
+          <button type="button" class="sort-button" id="yearBtn">
+            <span>Release Year</span>
+            <span class="arrow" id="yearArrow">↑</span>
+          </button>
+        </div>
+        <input type="hidden" name="sort_by" id="sort_by" value="audienceScore">
+        <input type="hidden" name="sort_order" id="sort_order" value="asc">
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" class="get-btn">Get Recommendations</button>
+        <button type="button" class="clear-btn" onclick="window.location.href='/'">Clear</button>
+      </div>
+    </form>
+
+    <div class="recommendations-title">Your Recommendations</div>
+    <div class="recommendations">
+      {% if recommendations %}
+        {% for rec in recommendations %}
+          <div class="movie-card-wrapper">
+        <div class="movie-card">
+          <div class="rating-badge">{{ rec.rating }}</div>
+          <div class="movie-title">{{ rec.title }}</div>
+          <div class="movie-info">
+                {% for g in rec.genre.split(',') %}
+                   <span class="movie-genre">{{ g.strip() }}</span>
+                    {% endfor %}
+                   </div>
+
+
+          <div class="movie-info"><i class="far fa-user" style="color: #ffffff;"></i>{{ rec.director }}</div>
+         
+          <div class="movie-info-row">
+           <div class="movie-info"><i class="far fa-calendar" style="color: #ffffff;"></i>{{ rec.releaseDateTheaters[-4:] if rec.releaseDateTheaters }}</div>
+              <div class="movie-info"><i class="far fa-clock" style="color: #ffffff;"></i>{{ rec.runtimeMinutes }} m</div>
+           </div>
+
+            <div class="movie-info">Lang :{{ rec.originalLanguage }}</div>
+
+          <div class="movie-scores">
+            <div class="score yellow">
+                <span class="score-label"></span><i class="far fa-star" style="color:rgb(250, 204, 21);"></i> {{ (rec.audienceScore * 100) | round(1) }}%
+            </div>
+            <div class="score red">
+                <span class="score-label"></span> <i class="far fa-star" style="color:rgb(239, 68, 68);"></i>{{ (rec.tomatoMeter * 100) | round(1) }}%
+            </div>
+          </div>
+        </div>
+      </div>
+          
+        {% endfor %}
+      {% else %}
+        <div style="text-align:center; color:#888;">No recommendations yet. Try searching above!</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <button id="backToTop" title="Back to Top">
+  <i class="fas fa-arrow-up"></i>
+  </button>
+
+
+  <script>
+    let sortBy = 'audienceScore';
+    let sortOrder = 'asc';
+
+    function handleSort(key) {
+      if (sortBy === key) {
+        sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortBy = key;
+        sortOrder = 'asc';
+      }
+
+      document.getElementById('sort_by').value = sortBy;
+      document.getElementById('sort_order').value = sortOrder;
+
+      document.querySelectorAll('.sort-button').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(key + 'Btn').classList.add('active');
+
+      ['audienceScore', 'tomatoMeter', 'year'].forEach(id => {
+        const arrow = document.getElementById(id + 'Arrow');
+        arrow.textContent = sortBy === id ? (sortOrder === 'desc' ? '↓' : '↑') : '↑';
+      });
+    }
+
+    ['audienceScore', 'tomatoMeter', 'year'].forEach(id => {
+      document.getElementById(id + 'Btn').addEventListener('click', () => handleSort(id));
+    });
+
+    window.onload = function () {
+      const slider = document.getElementById('top_n');
+      const output = document.getElementById('num-recommendations-value');
+      output.textContent = slider.value;
+    };
+
+
+  const backToTopBtn = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.style.display = 'block';
+    } else {
+      backToTopBtn.style.display = 'none';
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  </script>
+</body>
+</html>
