@@ -30,7 +30,7 @@ These datasets include movie metadata, critic reviews, sentiment scores, and mor
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
-
+ 
 ```bash
 git clone https://github.com/your-username/movie-recommendation-system.git
 cd movie-recommendation-system 
