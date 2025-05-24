@@ -93,10 +93,12 @@ Incorporate real-time rating feedback
 Deploy on Heroku / Render / AWS
 
 
-## 📂 Download the Dataset
-You can download
-csv file (link https://drive.google.com/drive/folders/1oiSvHvO3J0yNMrXomYOwby_SDnVS0mLl?usp=sharing)
-and  the all project files from [Google Drive]
-(https://drive.google.com/drive/folders/1n1e6lXZOvXWUby6ojdpzkFJTOnSZLHho?usp=sharing)
+## 📂 Download the Dataset and Project Files
+
+You can download the dataset and project files from the following Google Drive links:
+
+- 📊 **CSV Dataset**: [Download CSV files](https://drive.google.com/drive/folders/1oiSvHvO3J0yNMrXomYOwby_SDnVS0mLl?usp=sharing)  
+- 🗂️ **Complete Project Files**: [Download Full Project](https://drive.google.com/drive/folders/1n1e6lXZOvXWUby6ojdpzkFJTOnSZLHho?usp=sharing)
+
 
 
