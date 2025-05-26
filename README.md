@@ -32,10 +32,10 @@ These datasets include movie metadata, critic reviews, sentiment scores, and mor
 
 ### 1. Clone the Repository
 
-<pre> ```bash 
+ ```bash 
 git clone https://github.com/narmadapriya/Integrated_Movie_Recommendation_System.git
 cd Integrated_Movie_Recommendation_System
-``` </pre>
+``` 
 
 2. Install Dependencies
 Install required Python packages:
@@ -43,7 +43,28 @@ Install required Python packages:
   pip install -r requirements.txt
   ``` 
   Or manually install:
-  <pre> ```bash
-    pip install Flask pandas numpy scikit-learn OR
+   ```bash
+    pip install Flask pandas numpy scikit-learn
+   ```
+   OR
+   ```bash
     pip install Flask pandas==2.2.2 numpy==2.0.2 scikit-learn==1.6.1 gunicorn
-    ``` </pre>
+   ```
+
+3. Download and Place the Datasets
+🔻 Download the CSV dataset files from the following link:
+- 📊 **CSV Dataset**: [Download CSV files] (https://drive.google.com/drive/folders/1oiSvHvO3J0yNMrXomYOwby_SDnVS0mLl?usp=sharing))
+  
+Place the following files into the root directory of the project:
+ -rotten_tomatoes_movies.csv
+ -rotten_tomatoes_movie_reviews.csv
+
+4. Run the Application
+```bash
+python app.py
+```
+
+Then open your browser and go to:
+<pre>http://127.0.0.1:5000/</pre>
+
+  
