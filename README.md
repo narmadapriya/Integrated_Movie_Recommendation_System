@@ -31,5 +31,19 @@ These datasets include movie metadata, critic reviews, sentiment scores, and mor
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
-<pre> ```bash # Clone the repository git clone https://github.com/your-username/your-repo.git cd your-repo # Install dependencies pip install -r requirements.txt # Run the app python app.py ``` </pre>
 
+<pre> ```bash 
+git clone https://github.com/narmadapriya/Integrated_Movie_Recommendation_System.git
+cd Integrated_Movie_Recommendation_System
+``` </pre>
+
+2. Install Dependencies
+Install required Python packages:
+<pre> ```bash 
+  pip install -r requirements.txt
+  ``` </pre>
+  Or manually install:
+  <pre> ```bash
+    pip install Flask pandas numpy scikit-learn OR
+pip install Flask pandas==2.2.2 numpy==2.0.2 scikit-learn==1.6.1 gunicorn
+    ``` </pre>
