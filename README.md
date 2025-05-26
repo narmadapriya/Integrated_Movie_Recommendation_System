@@ -5,7 +5,7 @@ A full-stack integrated movie recommendation system built using **Content-Based 
 ## 🌟 Features
 
 - 🔍 Search by movie title, genre, or director
-- 🎯 Content-Based Filtering using TF-IDF and cosine similarity
+- 🎯 Content-Based Filtering using TF-IDF and cosine similarity 
 - 👥 Collaborative Filtering using critic ratings
 - 🧠 Hybrid recommendation logic combining content and collaborative scores
 - 📈 Dynamic sorting by:
