@@ -44,7 +44,7 @@ Install required Python packages:
   ``` 
   Or manually install:
    ```bash
-    pip install Flask pandas numpy scikit-learn
+    pip install Flask pandas numpy scikit-learn gunicorn
    ```
    OR
    ```bash
