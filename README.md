@@ -67,4 +67,35 @@ python app.py
 Then open your browser and go to:
 <pre>http://127.0.0.1:5000/</pre>
 
-  
+📁 Project Structure
+```bash
+  Integrated_Movie_Recommendation_System/
+│
+├── .gradio/                          # (Optional) Gradio SSL certificate folder
+│   └── certificate.pem
+│
+├── templates/                        # Flask HTML templates
+│   └── index.html
+│
+├── app.py                            # Flask web application
+├── Main_code.ipynb                   # Jupyter Notebook for dev/testing
+├── model.pkl                         # Serialized ML model (if used)
+├── requirements.txt                  # Python dependencies
+├── .gitignore                        # Git ignored files
+├── .gitattributes                    # Git LFS settings
+├── rotten_tomatoes_movies.csv        # Movie metadata
+├── rotten_tomatoes_movie_reviews.csv # Movie review metadata
+└── README.md                         # Project overview
+```
+
+📌 Future Enhancements
+
+-Add user login and personalized watch history
+-Include real-time user rating and feedback
+-Deploy on cloud platforms (Heroku, Render, AWS)
+
+
+## 📂 Project Files:
+
+You can download the dataset and project files from the following Google Drive links:
+🗂️ **Complete Project Files**: [Download Full Project] https://drive.google.com/drive/folders/1Ywbjw1BBRXBQwQPJYKBY4njCcvvRHE62?usp=sharing
