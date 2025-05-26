@@ -39,11 +39,11 @@ cd Integrated_Movie_Recommendation_System
 
 2. Install Dependencies
 Install required Python packages:
-<pre> ```bash 
+ ```bash 
   pip install -r requirements.txt
-  ``` </pre>
+  ``` 
   Or manually install:
   <pre> ```bash
     pip install Flask pandas numpy scikit-learn OR
-pip install Flask pandas==2.2.2 numpy==2.0.2 scikit-learn==1.6.1 gunicorn
+    pip install Flask pandas==2.2.2 numpy==2.0.2 scikit-learn==1.6.1 gunicorn
     ``` </pre>
