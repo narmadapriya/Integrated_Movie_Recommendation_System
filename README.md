@@ -46,7 +46,7 @@ pip install Flask pandas==2.2.2 numpy==2.0.2 scikit-learn==1.6.1 gunicorn
 
 3. Download and Place the Datasets
 🔻 Download the CSV dataset files from the following link:
-- 📊 **CSV Dataset**: [Download CSV files](https://drive.google.com/drive/folders/1oiSvHvO3J0yNMrXomYOwby_SDnVS0mLl?usp=sharing)
+- 📊 **CSV Dataset**: [Download CSV files] (https://drive.google.com/drive/folders/1oiSvHvO3J0yNMrXomYOwby_SDnVS0mLl?usp=sharing))
 Place the following files into the root directory of the project:
  -rotten_tomatoes_movies.csv
  -rotten_tomatoes_movie_reviews.csv
