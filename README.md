@@ -97,5 +97,5 @@ Then open your browser and go to:
 
 ## 📂 Project Files:
 
-You can download the dataset and project files from the following Google Drive links:
+You can download project files from the following Google Drive links:
 🗂️ **Complete Project Files**: [Download Full Project] https://drive.google.com/drive/folders/1Ywbjw1BBRXBQwQPJYKBY4njCcvvRHE62?usp=sharing
