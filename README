@@ -1,1 +1,572 @@
+# 🎬 Integrated Movie Recommendation System
 
+> A Hybrid Movie Recommendation System built using **Content-Based Filtering**, **Collaborative Filtering (SVD)**, 
+and a **Hybrid Recommendation Engine** using Rotten Tomatoes movie and review datasets.
+
+---
+
+## 📖 Project Overview
+
+This project combines multiple recommendation techniques to provide accurate and 
+personalized movie suggestions through a modern React-based user interface and a Python-powered backend.
+
+### ✨ Key Highlights
+
+✅ Content-Based Filtering using TF-IDF & Cosine Similarity
+
+✅ Collaborative Filtering using SVD (Surprise Library)
+
+✅ Hybrid Recommendation Model
+
+✅ Advanced Movie Filtering & Sorting
+
+✅ React + Tailwind CSS Frontend
+
+✅ Python Backend API
+
+---
+
+## 🔍 Search Capabilities
+
+Users can search movies by:
+
+🎬 Movie Title
+
+🎭 Genre
+
+🎥 Director
+
+---
+
+## 🎛️ Available Filters
+
+Users can refine recommendations using:
+
+⭐ Rating
+
+🌐 Language
+
+🎥 Director
+
+📅 Release Year Range
+
+---
+
+# 🚀 Features
+
+## 🎯 Content-Based Recommendation
+
+Uses movie metadata:
+
+* 🎭 Genre
+* 🎥 Director
+* ⭐ Rating
+* 🌐 Original Language
+
+### Technique Used
+
+* TF-IDF Vectorization
+* Linear Kernel Similarity
+
+---
+
+## 🤝 Collaborative Filtering
+
+Uses critic reviews from Rotten Tomatoes.
+
+### Implemented Using
+
+* Surprise Library
+* Singular Value Decomposition (SVD)
+
+---
+
+## 🧠 Hybrid Recommendation Engine
+
+Combines both recommendation approaches:
+
+Hybrid Score =
+
+0.6 × Content Score
+
+*
+
+0.4 × Collaborative Score
+
+### Benefits
+
+✅ Better Accuracy
+
+✅ Better Personalization
+
+✅ Reduced Cold Start Impact
+
+---
+
+## 🎛️ Advanced Filtering
+
+Filter movies by:
+
+* ⭐ Rating
+* 🌐 Language
+* 🎥 Director
+* 📅 Release Year
+
+---
+
+## 📊 Sorting Options
+
+Sort recommendations using:
+
+📈 Hybrid Score
+
+🍿 Audience Score
+
+🍅 Tomato Meter
+
+📅 Release Year
+
+---
+
+# 📂 Project Structure
+
+```text
+MOVIE-RECOMMENDATION-SYSTEM/
+│
+├── backend/
+│   ├── __pycache__/
+│   │   └── recommender.cpython-310.pyc
+│   ├── app.py
+│   ├── Code.ipynb
+│   ├── content_df.pkl
+│   ├── content_similarity.pkl
+│   ├── indices.pkl
+│   └── recommender.py
+│
+├── data/
+│   ├── rotten_tomatoes_movie_reviews.csv
+│   └── rotten_tomatoes_movies.csv
+│
+├── Frontend/
+│   └── movie-ui/
+│       ├── node_modules/
+│       ├── src/
+│       ├── .gitignore
+│       ├── eslint.config.js
+│       ├── index.html
+│       ├── package-lock.json
+│       ├── package.json
+│       ├── postcss.config.js
+│       ├── README.md
+│       ├── tailwind.config.js
+│       └── vite.config.js
+│
+├── myenv/
+├── movie-recommendation-system.code-workspace
+├── requirements.txt
+└── README.md
+```
+
+---
+
+# 📊 Dataset
+
+### 📁 Source
+
+* Rotten Tomatoes Movies Dataset
+* Rotten Tomatoes Movie Reviews Dataset
+
+### 🗃️ Dataset Files
+
+* `rotten_tomatoes_movies.csv`
+* `rotten_tomatoes_movie_reviews.csv`
+
+The datasets contain:
+
+* Movie Metadata
+* Critic Reviews
+* Audience Scores
+* Tomato Meter Scores
+* Sentiment Information
+
+---
+
+# 🧹 Data Preprocessing
+
+## 🧽 Data Cleaning
+
+✔ Removed unnamed columns
+
+✔ Removed duplicate records
+
+✔ Handled missing values
+
+✔ Normalized genres
+
+✔ Normalized director names
+
+✔ Normalized language values
+
+---
+
+## ⚙️ Feature Engineering
+
+Created:
+
+📌 Review Count
+
+📌 Sentiment Weight
+
+📌 Release Year
+
+📌 Decade
+
+📌 Metadata Soup
+
+---
+
+## 📈 Bayesian Weighted Scores
+
+Calculated:
+
+⭐ Bayesian Audience Score
+
+🍅 Bayesian Tomato Meter
+
+### Formula
+
+Score = (v / (v + m)) × R + (m / (v + m)) × C
+
+Where:
+
+* R = Movie Rating
+* v = Number of Reviews
+* C = Mean Rating
+* m = Minimum Vote Threshold
+
+---
+
+# 🤖 Recommendation Models
+
+## 1️⃣ Content-Based Filtering
+
+### Features Used
+
+* Genre
+* Director
+* Rating
+* Original Language
+
+### Technique
+
+* TF-IDF Vectorization
+* Linear Kernel Similarity
+
+---
+
+## 2️⃣ Collaborative Filtering
+
+### Algorithm
+
+Singular Value Decomposition (SVD)
+
+### Library
+
+```python
+surprise
+```
+
+### Rating Source
+
+```text
+criticName
+movieTitle
+originalScore
+```
+
+---
+
+## 3️⃣ Hybrid Recommendation Model
+
+### Formula
+
+```python
+hybrid_score =
+0.6 * content_score +
+0.4 * svd_score
+```
+
+---
+
+# 🛠️ Technologies Used
+
+## Backend
+
+🐍 Python 3.10.11
+
+📊 Pandas
+
+🔢 NumPy
+
+🤖 Scikit-Learn
+
+🎯 Surprise
+
+⚡ Flask / FastAPI
+
+---
+
+## Frontend
+
+⚛️ React
+
+⚡ Vite
+
+🎨 Tailwind CSS
+
+🟨 JavaScript
+
+---
+
+## Visualization
+
+📈 Matplotlib
+
+📊 Seaborn
+
+---
+
+# 📦 Python Libraries
+
+### requirements.txt
+
+```text
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+```
+
+---
+
+# 🔧 Additional Installations
+
+### Install Scikit-Learn
+
+```bash
+pip install scikit-learn
+```
+
+### Install Surprise
+
+```bash
+pip install scikit-surprise
+```
+
+---
+
+# ⚠️ Fix scikit-surprise Installation (Windows)
+
+If Surprise fails to install:
+
+### Step 1
+
+Install:
+
+📦 Visual Studio Build Tools 2022
+
+---
+
+### Step 2
+
+Open:
+
+```text
+Visual Studio Installer
+```
+
+Select:
+
+```text
+Modify
+```
+
+---
+
+### Step 3
+
+Choose:
+
+```text
+Desktop Development with C++
+```
+
+Enable:
+
+```text
+MSVC v143 - VS 2022 C++ x64/x86 Build Tools
+```
+
+---
+
+### Step 4
+
+Click:
+
+```text
+Install While Downloading
+```
+
+OR
+
+```text
+Download All Then Install
+```
+
+---
+
+### Step 5
+
+Restart VS Code
+
+Install again:
+
+```bash
+pip install scikit-surprise
+```
+
+---
+
+# ▶️ Run the Application
+
+## 1️⃣ Create Virtual Environment
+
+```bash
+python -m venv myenv
+```
+
+Activate:
+
+```bash
+myenv\Scripts\activate
+```
+
+---
+
+## 2️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Additional packages:
+
+```bash
+pip install scikit-learn
+pip install scikit-surprise
+```
+
+---
+
+## 🚀 Start Backend
+
+Open Terminal 1
+
+```bash
+cd backend
+python app.py
+```
+
+---
+
+## 🌐 Start Frontend
+
+Open Terminal 2
+
+```bash
+cd Frontend/movie-ui
+npm install
+npm run dev
+```
+
+---
+
+# 🎯 Search Modes
+
+## 🎬 Title Search
+
+Example:
+
+```text
+Batman
+```
+
+Returns:
+
+* Top Result Movie Card
+* Similar Movie Recommendations
+
+---
+
+## 🎭 Genre Search
+
+Example:
+
+```text
+Sci-Fi
+```
+
+Returns:
+
+Top matching Sci-Fi movies.
+
+---
+
+## 🎥 Director Search
+
+Example:
+
+```text
+Christopher Nolan
+```
+
+Returns:
+
+Movies directed by Christopher Nolan.
+
+---
+
+# 📈 Future Improvements
+
+✅ User Authentication
+
+✅ Watchlist Feature
+
+✅ Movie Posters API Integration
+
+✅ Real User Ratings
+
+✅ Deep Learning Recommendation Models
+
+✅ Cloud Deployment
+
+---
+
+# 📂 Project Files
+
+### 🗂️ Complete Project Files
+
+Google Drive:
+
+https://drive.google.com/drive/folders/1Ywbjw1BBRXBQwQPJYKBY4njCcvvRHE62?usp=sharing
+
+---
+
+# 👩‍💻 Developed By
+
+**Narmada Priya**
+
+🎓 MCA Capstone Project
+
+Hybrid Movie Recommendation System using Content-Based Filtering, Collaborative Filtering (SVD), and Hybrid Recommendation Techniques.
