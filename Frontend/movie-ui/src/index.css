@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ======================================================
+   GLOBAL RESET
+====================================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ======================================================
+   ROOT VARIABLES
+====================================================== */
+
+:root {
+  color-scheme: dark;
+
+  --bg-card: rgba(8, 18, 36, 0.96);
+  --bg-input: rgba(18, 31, 52, 0.88);
+
+  --border-color: rgba(82, 102, 138, 0.35);
+
+  --text-primary: #ffffff;
+  --text-secondary: #94a3b8;
+
+  --accent-cyan: #11d9ff;
+  --accent-blue: #00bfff;
+
+  --color-audience: #ffd54a;
+  --color-tomato: #ff5a5a;
+  --color-year: #11d9ff;
+
+  --transition: all 0.25s ease;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ======================================================
+   HTML / BODY / ROOT
+====================================================== */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+ 
+
+/* ======================================================
+   FORM RESET
+====================================================== */
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* remove number arrows */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* ======================================================
+   SCROLLBAR
+====================================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+
+::-webkit-scrollbar-thumb {
+  background: #1f3556;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2d4c78;
+}
+
+/* ======================================================
+   TEXT SELECTION
+====================================================== */
+
+::selection {
+  background: rgba(8, 183, 255, 0.35);
+  color: white;
+}
