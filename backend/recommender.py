@@ -36,7 +36,7 @@ import re
 
 movies_df = pd.read_csv(r"C:\Users\Admin\Desktop\PROJECTS\movie-recommendation-system\data\rotten_tomatoes_movies.csv",encoding="latin-1")
 
-reviews_df = pd.read_csv(r"C:\Users\Admin\Desktop\PROJECTS\movie-recommendation-system\data\rotten_tomatoes_movie_reviews.csv",encoding="latin-1")
+reviews_df = pd.read_csv(r"C:\Users\Admin\Desktop\PROJECTS\movie-recommendation-system\data\rotten_tomatoes_movie_reviews.csv",encoding="latin-1",low_memory=False)
 
 # =========================================================
 # DATA CLEANING + PREPROCESSING + FEATURE ENGINEERING
@@ -530,6 +530,21 @@ content_df["finalScore"] = (
 
 )
 
+#=================================================
+#  Quality Score
+#=================================================
+
+content_df["quality_score"] = (
+    0.4 * content_df["bayesianAudienceScore"]
+    +
+    0.4 * content_df["bayesianTomatoMeter"]
+    +
+    0.2 * (content_df["sentimentWeight"] * 100)
+)  
+
+# Convert raw float quality_scores into whole integers (e.g., 77.334 -> 77)
+content_df["quality_score"] = content_df["quality_score"].round().astype(int)
+
 
 # =========================================================
 # TF-IDF VECTORIZATION
@@ -763,14 +778,14 @@ def apply_filters(
 
     if director and director != "All":
 
-     director = (
+       director = (
         str(director)
         .lower()
         .replace(" ", "")
         .strip()
-    )
+       )
 
-    filtered_df = filtered_df[
+       filtered_df = filtered_df[
         filtered_df["director"]
         .str.contains(
             director,
@@ -820,6 +835,14 @@ def sort_results(
             by="hybrid_score",
             ascending=ascending
         )
+        
+    elif    sort_by == "Quality Score":
+
+        result = result.sort_values(
+            by="quality_score",
+            ascending=ascending
+        )
+        
 
     return result.reset_index(drop=True)
 
@@ -1022,7 +1045,7 @@ def integrated_movie_recommender(
         print("\n🔥 HYBRID FILTERED RESULTS ONLY")
         print("-" * 70)
 
-        print(
+    print(
         final_output[
             [
                 "title",
@@ -1033,7 +1056,8 @@ def integrated_movie_recommender(
                 "releaseYear",
                 "audienceScore",
                 "tomatoMeter",
-                "hybrid_score"
+                "hybrid_score",
+                "quality_score"
             ]
         ].to_string(index=False)
     )
@@ -1078,3 +1102,4 @@ def integrated_movie_recommender(
         "results": final_output
 
     }
+    
