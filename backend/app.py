@@ -3,7 +3,10 @@ from flask_cors import CORS
 
 from recommender import (
     integrated_movie_recommender,
-    content_df
+    content_df,
+    rating_dropdown,
+    language_dropdown,
+    director_dropdown
 )
 
 # =====================================
@@ -148,12 +151,9 @@ def recommend():
             "Hybrid Score"
         )
 
-        ascending = bool(
-            data.get(
-                "ascending",
-                False
-            )
-        )
+        ascending = str(
+        data.get("ascending", False)
+         ).lower() == "true"
         
         
 
@@ -186,36 +186,25 @@ def recommend():
 
         sort_map = {
 
-            "hybrid score":
-            "Hybrid Score",
+    "hybrid score": "Hybrid Score",
+    "hybrid_score": "Hybrid Score",
 
-            "hybrid_score":
-            "Hybrid Score",
+    "audience score": "Audience Score",
+    "audiencescore": "Audience Score",
+    "audienceScore": "Audience Score",
 
-            "audience score":
-            "Audience Score",
+    "tomato meter": "Tomato Meter",
+    "tomatoMeter": "Tomato Meter",
+    "bayesianTomatoMeter": "Tomato Meter",
 
-            "audiencescore":
-            "Audience Score",
+    "release year": "Release Year",
+    "releaseYear": "Release Year",
 
-            "audienceScore":
-            "Audience Score",
-
-            "tomato meter":
-            "Tomato Meter",
-
-            "tomatoMeter":
-            "Tomato Meter",
-
-            "bayesianTomatoMeter":
-            "Tomato Meter",
-
-            "release year":
-            "Release Year",
-
-            "releaseYear":
-            "Release Year"
-        }
+    # NEW
+    "quality score": "Quality Score",
+    "quality_score": "Quality Score",
+    "qualityScore": "Quality Score"
+}
 
         sort_by = sort_map.get(
             str(sort_by).strip(),
