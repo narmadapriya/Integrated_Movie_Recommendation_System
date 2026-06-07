@@ -154,6 +154,8 @@ export default function App() {
 
   }, []);
 
+
+
   // =========================
   // FILTER DIRECTORS
   // =========================
@@ -558,6 +560,18 @@ if (!data.success) {
 
         </div>
 
+        <div className="movie-detail">
+
+          <i className="ri-bar-chart-fill"></i>
+
+          <span>
+            {movie.hybrid_score !== undefined
+              ? Number(movie.hybrid_score).toFixed(3)
+              : "0.000"}
+          </span>
+
+        </div>
+
       </div>
 
       <div className="scores-section">
@@ -581,18 +595,17 @@ if (!data.success) {
           </span>
 
         </div>
+            <div className="score-box sentiment-box">
+  <i className="ri-chat-smile-3-fill"></i>
 
-        <div className="score-box hybrid-box">
-
-          <i className="ri-bar-chart-fill"></i>
-
-          <span>
-            {movie.hybrid_score !== undefined
-            ? Number(movie.hybrid_score).toFixed(3)
-              : "0.000"}
-          </span>
-
-        </div>
+  <span>
+    {movie.quality_score !== undefined &&
+     movie.quality_score !== null &&
+     movie.quality_score !== ""
+      ? `${Math.round(movie.quality_score)}%`
+      : "0%"}
+  </span>
+</div>
 
       </div>
 
@@ -1034,6 +1047,21 @@ if (!data.success) {
 
         <div className="quick-sort-buttons">
 
+
+  <button
+    className={`sort-chip hybrid-chip ${
+      sortBy === "Hybrid Score"
+        ? "active"
+        : ""
+    }`}
+    onClick={() =>
+      setSortBy("Hybrid Score")
+    }
+  >
+    <i className="ri-bar-chart-fill"></i>
+    Hybrid Score
+  </button>        
+
   <button
     className={`sort-chip audience-chip ${
       sortBy === "Audience Score"
@@ -1077,17 +1105,17 @@ if (!data.success) {
   </button>
 
   <button
-    className={`sort-chip hybrid-chip ${
-      sortBy === "Hybrid Score"
-        ? "active"
-        : ""
-    }`}
+    className={`sort-chip sentiment-chip ${
+  sortBy === "Quality Score"
+    ? "active"
+    : ""
+   }`}
     onClick={() =>
-      setSortBy("Hybrid Score")
+      setSortBy("Quality Score")
     }
   >
-    <i className="ri-bar-chart-fill"></i>
-    Hybrid Score
+    <i className="ri-chat-smile-3-fill"></i>
+    Critic Sentiment
   </button>
 
 </div>
